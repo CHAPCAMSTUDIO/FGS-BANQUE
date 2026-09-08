@@ -2199,30 +2199,87 @@ tbody tr:hover {
   gap: 16px;
 }
 
-.beneficiary-preview {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  padding: 13px;
+.beneficiary-section {
+  display: grid;
+  gap: 12px;
+  padding: 15px;
   border: 1px dashed var(--blue-300);
   border-radius: 6px;
   background: var(--surface-blue);
 }
 
-.beneficiary-preview b,
-.beneficiary-preview small {
-  display: block;
+.beneficiary-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.beneficiary-preview b {
+.beneficiary-section h4 {
+  margin: 0 0 3px;
   font-family: var(--font-body);
   font-size: 12px;
 }
 
-.beneficiary-preview small {
-  margin-top: 2px;
+.beneficiary-section p,
+.empty-beneficiary-state {
+  margin: 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
+}
+
+.saved-beneficiary-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.saved-beneficiary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  min-width: min(100%, 210px);
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.saved-beneficiary:hover {
+  border-color: var(--blue-500);
+  transform: translateY(-1px);
+}
+
+.saved-beneficiary > span:nth-child(2) {
+  min-width: 0;
+}
+
+.saved-beneficiary b,
+.saved-beneficiary small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.saved-beneficiary b {
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+
+.saved-beneficiary small {
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.saved-beneficiary > svg {
+  width: 14px;
+  color: var(--blue-700);
 }
 
 .transfer-summary-card {
@@ -3307,6 +3364,70 @@ tbody tr:hover {
 .success-state h2 { margin-bottom: 8px; font-size: 22px; }
 .success-state p { margin-bottom: 0; color: var(--muted); }
 
+.success-state .detail-list {
+  margin-top: 22px;
+  text-align: left;
+}
+
+.email-preview-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.email-preview {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-soft);
+}
+
+.email-preview-head,
+.email-preview-subject {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.email-preview-head > div,
+.email-preview-subject {
+  min-width: 0;
+}
+
+.email-preview span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.email-preview b {
+  display: block;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.email-preview-subject {
+  display: block;
+  padding-top: 11px;
+  margin-top: 11px;
+  border-top: 1px solid var(--line);
+}
+
+.email-preview p {
+  margin: 13px 0;
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.email-preview .button {
+  min-height: 35px;
+  font-size: 11px;
+}
+
 .card-secret {
   padding: 18px;
   border-radius: 6px;
@@ -3600,6 +3721,8 @@ tbody tr:hover {
   .filter-group select { width: 100%; min-width: 0; }
   .form-grid,
   .budget-summary { grid-template-columns: 1fr; }
+  .beneficiary-section-head { align-items: flex-start; flex-direction: column; }
+  .saved-beneficiary { width: 100%; }
   .transfer-summary-card { padding: 19px; }
   .bank-card { max-width: none; }
   .bank-card.virtual { max-width: 88%; margin-left: auto; }
