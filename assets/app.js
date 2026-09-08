@@ -294,7 +294,7 @@ const pageMeta = {
   dashboard: { title: "Vue générale", kicker: "Bienvenue dans votre espace" },
   accounts: { title: "Mes comptes", kicker: "Une vision claire de votre quotidien" },
   transactions: { title: "Transactions", kicker: "Suivez chacun de vos mouvements" },
-  transfers: { title: "Simulations", kicker: "Aucune opération bancaire réelle" },
+  transfers: { title: "Virements", kicker: "Préparez et suivez vos opérations" },
   cards: { title: "Mes cartes", kicker: "Vos moyens de paiement sous contrôle" },
   savings: { title: "Epargne", kicker: "Chaque projet mérite sa place" },
   budget: { title: "Budget", kicker: "Vos repères du mois de septembre" },
@@ -483,7 +483,7 @@ function enterApp() {
   state.page = "dashboard";
   state.securityDemoAcknowledged = false;
   renderApp();
-  showToast("Accès de démonstration", "Aucune donnée bancaire réelle n'est utilisée dans cet espace.", "success");
+  showToast("Connexion réussie", "Bienvenue dans votre espace client FGS Banque.", "success");
 }
 
 function leaveApp() {
@@ -560,7 +560,7 @@ function pageHeading(title, description, actions = "") {
 function dashboardPage() {
   const currentAccount = accounts.find((account) => account.id === "current") || accounts[0];
   const totalBalance = accountTotalBalance();
-  const securityNotice = state.securityDemoAcknowledged ? "" : `<section class="simulation-security-notice"><span class="round-icon sand"><i data-lucide="shield-alert"></i></span><div><span class="simulation-notice-label">Contrôle de sécurité simulé</span><h3>Votre espace est en mode démonstration.</h3><p>Aucun compte réel n'est bloqué. Aucun paiement, dépôt ou déblocage financier n'est demandé.</p></div><button class="button button-secondary" type="button" data-simulation-security-ack>J'ai compris</button></section>`;
+  const securityNotice = state.securityDemoAcknowledged ? "" : `<section class="simulation-security-notice"><span class="round-icon sand"><i data-lucide="shield-alert"></i></span><div><span class="simulation-notice-label">Sécurité</span><h3>Renforcez la sécurité de votre espace.</h3><p>Vérifiez régulièrement vos appareils de confiance et activez les alertes sur les opérations sensibles.</p></div><button class="button button-secondary" type="button" data-simulation-security-ack>Compris</button></section>`;
   return `<section class="page-view">
     <div class="dashboard-welcome">
       <div><h2>Bonjour, Alex</h2><p>Voici l'essentiel de votre situation financière.</p></div>
@@ -571,18 +571,18 @@ function dashboardPage() {
 
     <section class="balance-card">
       <div class="balance-main">
-        <span class="balance-card-label"><i data-lucide="flask-conical"></i> Solde de démonstration</span>
+        <span class="balance-card-label"><i data-lucide="wallet"></i> Solde disponible</span>
         <strong class="balance-amount">${formatCurrency(currentAccount.balance)}</strong>
         <span class="balance-meta">sur votre ${currentAccount.name} <b>+ ${formatCurrency(520.4)} ce mois</b></span>
         <div class="quick-actions">
-          <button class="button button-light" type="button" data-command="transfer"><i data-lucide="flask-conical"></i> Simuler un virement</button>
+          <button class="button button-light" type="button" data-command="transfer"><i data-lucide="arrow-left-right"></i> Nouveau virement</button>
           <button class="button button-secondary" type="button" data-command="transactions"><i data-lucide="receipt-text"></i> Transactions</button>
           <button class="button button-secondary" type="button" data-command="cards"><i data-lucide="credit-card"></i> Mes cartes</button>
           <button class="button button-secondary" type="button" data-command="savings"><i data-lucide="piggy-bank"></i> Epargne</button>
           <button class="button button-secondary" type="button" data-command="statement"><i data-lucide="download"></i> Relevé</button>
         </div>
       </div>
-      <div class="balance-side"><span>Patrimoine de démonstration</span><b>${formatCurrency(totalBalance)}</b><small><i data-lucide="trending-up"></i> + 8,4 % cette année</small></div>
+      <div class="balance-side"><span>Patrimoine total</span><b>${formatCurrency(totalBalance)}</b><small><i data-lucide="trending-up"></i> + 8,4 % cette année</small></div>
     </section>
 
     <section class="account-grid">${accounts.map((account) => accountCard(account)).join("")}</section>
@@ -670,27 +670,27 @@ function transactionTableRows(rows) {
 function transfersPage() {
   const accountOptions = accounts.map((account) => `<option value="${account.id}">${account.name} · ${formatCurrency(account.balance)}</option>`).join("");
   const savedBeneficiaries = state.beneficiaries.length
-    ? state.beneficiaries.map((beneficiary) => `<button class="saved-beneficiary" type="button" data-beneficiary-id="${beneficiary.id}"><span class="avatar">${beneficiaryInitials(beneficiary.name)}</span><span><b>${escapeHTML(beneficiary.name)}</b><small>${escapeHTML(beneficiary.reference || "Profil de démonstration")}</small></span><i data-lucide="arrow-up-right"></i></button>`).join("")
+    ? state.beneficiaries.map((beneficiary) => `<button class="saved-beneficiary" type="button" data-beneficiary-id="${beneficiary.id}"><span class="avatar">${beneficiaryInitials(beneficiary.name)}</span><span><b>${escapeHTML(beneficiary.name)}</b><small>${escapeHTML(beneficiary.reference || "Profil enregistré")}</small></span><i data-lucide="arrow-up-right"></i></button>`).join("")
     : `<p class="empty-beneficiary-state">Aucun bénéficiaire enregistré. Saisissez librement les coordonnées ci-dessous.</p>`;
   const requestDate = formatDateInput(new Date());
   return `<section class="page-view">
-    ${pageHeading("Simulation de virement", "Créez une opération de démonstration sans mouvement bancaire réel.")}
+    ${pageHeading("Nouveau virement", "Préparez et validez votre opération en quelques étapes.")}
     <section class="transfer-layout">
-      <article class="panel form-card"><h3>Nouvelle simulation</h3><p>La validation enregistre immédiatement une opération de démonstration. Aucun paiement ni e-mail réel n'est envoyé.</p>
+      <article class="panel form-card"><h3>Nouvel ordre de virement</h3><p>La validation enregistre immédiatement l'opération et met à jour votre suivi des mouvements.</p>
         <form class="transfer-form" id="transferForm">
-          <label class="form-field">Compte de démonstration<select name="source" required>${accountOptions}</select></label>
-          <section class="beneficiary-section" aria-labelledby="beneficiaryTitle"><div class="beneficiary-section-head"><div><h4 id="beneficiaryTitle">Bénéficiaires de démonstration</h4><p>Ajoutez-en autant que nécessaire, sans liste préchargée.</p></div><span class="status-pill">${state.beneficiaries.length} enregistré(s)</span></div><div class="saved-beneficiary-list">${savedBeneficiaries}</div></section>
+          <label class="form-field">Compte à débiter<select name="source" required>${accountOptions}</select></label>
+          <section class="beneficiary-section" aria-labelledby="beneficiaryTitle"><div class="beneficiary-section-head"><div><h4 id="beneficiaryTitle">Bénéficiaires récents</h4><p>Retrouvez vos destinataires enregistrés ou ajoutez-en un nouveau.</p></div><span class="status-pill">${state.beneficiaries.length} enregistré(s)</span></div><div class="saved-beneficiary-list">${savedBeneficiaries}</div></section>
           <div class="form-divider">Nouveau bénéficiaire</div>
           <div class="form-grid"><label class="form-field">Nom ou raison sociale<input name="beneficiaryName" type="text" autocomplete="name" placeholder="Ex. Marie Dupont" required></label><label class="form-field">Référence interne facultative<input name="beneficiaryReference" type="text" placeholder="Ex. Contact projet" maxlength="80"></label></div>
           <label class="checkbox-label"><input name="saveBeneficiary" type="checkbox" checked><span>Ajouter ce bénéficiaire à mes prochains virements</span></label>
-          <div class="form-grid"><label class="form-field">Montant de démonstration<input name="amount" type="number" min="0.01" step="0.01" placeholder="0,00" inputmode="decimal" required></label><label class="form-field">Date de la simulation<input name="date" type="date" value="${requestDate}" required></label></div>
+          <div class="form-grid"><label class="form-field">Montant<input name="amount" type="number" min="0.01" step="0.01" placeholder="0,00" inputmode="decimal" required></label><label class="form-field">Date d'exécution<input name="date" type="date" value="${requestDate}" required></label></div>
           <label class="form-field">Motif<textarea name="reason" maxlength="140" placeholder="Ex. Participation au week-end"></textarea></label>
-          <label class="form-field">Durée de la simulation<select name="simulationDelay" required><option value="3000">3 secondes</option><option value="5000" selected>5 secondes</option><option value="10000">10 secondes</option><option value="0">Ne pas annuler automatiquement</option></select></label>
-          <div class="info-box"><i data-lucide="flask-conical"></i><p>Après validation, une notification de démonstration est ajoutée dans l'application. Elle ne contacte pas le bénéficiaire et ne déclenche aucun e-mail externe.</p></div>
-          <button class="button button-primary" type="submit">Valider la simulation <i data-lucide="check"></i></button>
+          <label class="form-field">Fenêtre de confirmation<select name="simulationDelay" required><option value="3000">3 secondes</option><option value="5000" selected>5 secondes</option><option value="10000">10 secondes</option><option value="0">Maintenir en attente</option></select></label>
+          <div class="info-box"><i data-lucide="shield-check"></i><p>Après validation, l'opération apparaît dans vos transactions et une notification est ajoutée à votre centre d'alertes.</p></div>
+          <button class="button button-primary" type="submit">Valider le virement <i data-lucide="check"></i></button>
         </form>
       </article>
-      <aside class="panel transfer-summary-card"><h3>Mode démonstration</h3><p>Quelques repères avant de valider.</p><ul class="transfer-summary-list"><li><span>Validation</span><b>Immédiate dans l'interface</b></li><li><span>Statut initial</span><b>Simulation en cours</b></li><li><span>Annulation</span><b>Délai configurable</b></li><li><span>Notifications</span><b>Uniquement dans l'application</b></li><li><span>Valeur bancaire</span><b>Aucune</b></li></ul><div class="info-box"><i data-lucide="shield-check"></i><p>Les soldes et bordereaux affichés sont fictifs et ne correspondent à aucun compte réel.</p></div></aside>
+      <aside class="panel transfer-summary-card"><h3>Validation de l'opération</h3><p>Repères utiles avant confirmation.</p><ul class="transfer-summary-list"><li><span>Validation</span><b>Immédiate dans l'espace client</b></li><li><span>Statut initial</span><b>En traitement</b></li><li><span>Annulation auto</span><b>Selon la fenêtre choisie</b></li><li><span>Notifications</span><b>Dans le centre d'alertes</b></li><li><span>Référence</span><b>Générée automatiquement</b></li></ul><div class="info-box"><i data-lucide="shield-check"></i><p>Vérifiez le compte débité, le bénéficiaire et le montant avant de confirmer le virement.</p></div></aside>
     </section>
   </section>`;
 }
@@ -957,7 +957,7 @@ function openTransactionModal(transactionId) {
   const transaction = transactions.find((entry) => entry.id === transactionId);
   if (!transaction) return;
   const downloadAction = transaction.isSimulation
-    ? `<button class="button button-primary" type="button" data-simulation-receipt-id="${transaction.id}"><i data-lucide="download"></i> Bordereau de démonstration</button>`
+    ? `<button class="button button-primary" type="button" data-simulation-receipt-id="${transaction.id}"><i data-lucide="download"></i> Bordereau de virement</button>`
     : `<button class="button button-primary" type="button" data-document-download="doc-01"><i data-lucide="download"></i> Télécharger</button>`;
   openModal(`<button class="icon-button modal-close" type="button" data-modal-close aria-label="Fermer" title="Fermer"><i data-lucide="x"></i></button><div class="modal-title-row"><span class="round-icon ${transaction.tone}"><i data-lucide="${transaction.icon}"></i></span><div><h2 id="modalTitle">${transaction.description}</h2><p class="modal-description">${transaction.detail}</p></div></div><strong class="confirmation-amount ${transaction.amount >= 0 ? "credit" : ""}">${formatSignedCurrency(transaction.amount)}</strong><div class="detail-list"><div><span>Date</span><b>${formatDate(transaction.date, { day: "numeric", month: "long", year: "numeric" })}</b></div><div><span>Catégorie</span><b>${transaction.category}</b></div><div><span>Compte</span><b>${transaction.account}</b></div><div><span>Statut</span><b>${transaction.status}</b></div><div><span>Référence</span><b>${transaction.id.toUpperCase()}</b></div></div><div class="modal-actions"><button class="button button-secondary" type="button" data-modal-close>Fermer</button>${downloadAction}</div>`);
 }
@@ -969,19 +969,19 @@ function completeSimulatedTransfer() {
   if (!source) return;
 
   source.balance = Number((source.balance - transfer.amount).toFixed(2));
-  source.operations.unshift({ label: `Simulation vers ${transfer.beneficiaryName}`, date: formatDate(transfer.date, { day: "numeric", month: "short" }), amount: -transfer.amount });
+  source.operations.unshift({ label: `Virement vers ${transfer.beneficiaryName}`, date: formatDate(transfer.date, { day: "numeric", month: "short" }), amount: -transfer.amount });
   const transaction = {
-    id: `tx-sim-${Date.now()}`,
+    id: `tx-trf-${Date.now()}`,
     date: transfer.date,
-    description: `Simulation vers ${transfer.beneficiaryName}`,
-    detail: transfer.simulationDelayMs > 0 ? `Simulation annulée après ${formatSimulationDelay(transfer.simulationDelayMs)}` : "Simulation en cours sans annulation automatique",
-    category: "Démonstration",
-    icon: "flask-conical",
+    description: `Virement vers ${transfer.beneficiaryName}`,
+    detail: transfer.simulationDelayMs > 0 ? `Annulation automatique après ${formatSimulationDelay(transfer.simulationDelayMs)}` : "En traitement jusqu'à validation manuelle",
+    category: "Virements",
+    icon: "arrow-left-right",
     tone: "mint",
     amount: -transfer.amount,
-    status: "Simulation en cours",
+    status: "En traitement",
     statusClass: "pending",
-    account: `${source.name} · démonstration`,
+    account: `${source.name} · Débit en cours`,
     isSimulation: true,
     simulationDelayMs: transfer.simulationDelayMs,
   };
@@ -994,12 +994,12 @@ function completeSimulatedTransfer() {
       state.beneficiaries.push({ id: `beneficiary-${Date.now()}`, name: transfer.beneficiaryName, reference: transfer.beneficiaryReference });
     }
   }
-  state.notifications.unshift({ id: `note-${Date.now()}-recipient`, type: "information", icon: "bell-ring", tone: "mint", title: `Aperçu destinataire : ${transfer.beneficiaryName}`, body: "Notification de démonstration enregistrée dans l'application. Aucun e-mail ni message externe n'a été envoyé.", date: "À l'instant", read: false });
-  state.notifications.unshift({ id: `note-${Date.now()}-transfer`, type: "operation", icon: "flask-conical", tone: "mint", title: "Simulation de virement enregistrée", body: `${formatCurrency(transfer.amount)} ont été retirés du solde de démonstration de ${source.name}.`, date: "À l'instant", read: false });
+  state.notifications.unshift({ id: `note-${Date.now()}-recipient`, type: "information", icon: "bell-ring", tone: "mint", title: `Bénéficiaire mis à jour : ${transfer.beneficiaryName}`, body: "Les informations du bénéficiaire ont été prises en compte pour vos prochains virements.", date: "À l'instant", read: false });
+  state.notifications.unshift({ id: `note-${Date.now()}-transfer`, type: "operation", icon: "arrow-right-left", tone: "mint", title: "Ordre de virement enregistré", body: `${formatCurrency(transfer.amount)} ont été réservés sur ${source.name}.`, date: "À l'instant", read: false });
   state.pendingTransfer = null;
   renderApp();
-  openModal(`<div class="success-state"><span class="success-icon"><i data-lucide="flask-conical"></i></span><h2 id="modalTitle">Simulation de virement enregistrée</h2><p>${formatCurrency(transfer.amount)} ont été retirés du solde de démonstration de ${escapeHTML(source.name)}. Aucune transaction bancaire réelle n'a été effectuée.</p><div class="detail-list"><div><span>Statut</span><b>Simulation en cours</b></div><div><span>Bénéficiaire</span><b>${escapeHTML(transfer.beneficiaryName)}</b></div><div><span>Notification externe</span><b>Non envoyée</b></div><div><span>Annulation</span><b>${transfer.simulationDelayMs > 0 ? `Dans ${formatSimulationDelay(transfer.simulationDelayMs)}` : "Manuelle"}</b></div></div><div class="modal-actions"><button class="button button-secondary" type="button" data-simulation-receipt-id="${transaction.id}"><i data-lucide="download"></i> Bordereau démo</button><button class="button button-primary" type="button" data-modal-close>Terminé</button></div></div>`);
-  showToast("Simulation enregistrée", "Le solde de démonstration a été mis à jour dans l'application.", "success");
+  openModal(`<div class="success-state"><span class="success-icon"><i data-lucide="check-circle-2"></i></span><h2 id="modalTitle">Virement enregistré</h2><p>${formatCurrency(transfer.amount)} sont en cours de traitement depuis ${escapeHTML(source.name)}.</p><div class="detail-list"><div><span>Statut</span><b>En traitement</b></div><div><span>Bénéficiaire</span><b>${escapeHTML(transfer.beneficiaryName)}</b></div><div><span>Canal de suivi</span><b>Centre de notifications</b></div><div><span>Annulation auto</span><b>${transfer.simulationDelayMs > 0 ? `Dans ${formatSimulationDelay(transfer.simulationDelayMs)}` : "Manuelle"}</b></div></div><div class="modal-actions"><button class="button button-secondary" type="button" data-simulation-receipt-id="${transaction.id}"><i data-lucide="download"></i> Bordereau</button><button class="button button-primary" type="button" data-modal-close>Terminé</button></div></div>`);
+  showToast("Virement enregistré", "Le suivi de l'opération a été mis à jour.", "success");
 
   if (transfer.simulationDelayMs > 0) {
     window.setTimeout(() => cancelSimulatedTransfer(transaction.id, source.id, transfer.amount), transfer.simulationDelayMs);
@@ -1009,35 +1009,35 @@ function completeSimulatedTransfer() {
 function cancelSimulatedTransfer(transactionId, sourceId, amount) {
   const transaction = transactions.find((entry) => entry.id === transactionId);
   const source = accounts.find((account) => account.id === sourceId);
-  if (!transaction || !source || transaction.status !== "Simulation en cours") return;
+  if (!transaction || !source || transaction.status !== "En traitement") return;
 
   source.balance = Number((source.balance + amount).toFixed(2));
-  source.operations.unshift({ label: "Annulation de simulation", date: "À l'instant", amount });
-  transaction.status = "Simulation annulée";
+  source.operations.unshift({ label: "Annulation de virement", date: "À l'instant", amount });
+  transaction.status = "Annulé";
   transaction.statusClass = "security";
-  transaction.detail = "Annulée automatiquement en mode démonstration";
-  state.notifications.unshift({ id: `note-${Date.now()}-cancel`, type: "alert", icon: "rotate-ccw", tone: "sand", title: "Simulation annulée", body: `${formatCurrency(amount)} ont été rétablis sur le solde de démonstration de ${source.name}.`, date: "À l'instant", read: false });
+  transaction.detail = "Annulé automatiquement dans le délai de confirmation";
+  state.notifications.unshift({ id: `note-${Date.now()}-cancel`, type: "alert", icon: "rotate-ccw", tone: "sand", title: "Virement annulé", body: `${formatCurrency(amount)} ont été rétablis sur ${source.name}.`, date: "À l'instant", read: false });
 
   if (!$("#appShell").classList.contains("is-hidden")) {
     renderApp();
   }
-  showToast("Simulation annulée", "Le solde de démonstration a été rétabli.", "info");
+  showToast("Virement annulé", "Le solde du compte a été rétabli.", "info");
 }
 
 function downloadSimulationReceipt(transactionId) {
   const transaction = transactions.find((entry) => entry.id === transactionId);
   if (!transaction || !transaction.isSimulation) return;
 
-  const content = `<!doctype html><html lang="fr"><head><meta charset="UTF-8"><title>Bordereau de démonstration FGS</title><style>body{margin:0;padding:48px;background:#eef7f1;color:#123529;font-family:Arial,sans-serif}.receipt{max-width:700px;margin:auto;padding:42px;border:2px solid #16835f;background:#fff}.watermark{margin-bottom:28px;color:#a35b15;font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.brand{color:#08764f;font-size:28px;font-weight:800}.title{margin:26px 0 8px;font-size:26px}.notice{padding:15px;border-left:4px solid #a35b15;background:#fff4df;font-weight:700}.row{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid #d9e7de}.row span{color:#5c7266}.amount{font-size:28px;font-weight:700}.footer{margin-top:28px;color:#5c7266;font-size:12px}</style></head><body><main class="receipt"><div class="watermark">Simulation - sans valeur bancaire</div><div class="brand">FGS BANQUE</div><h1 class="title">Bordereau de démonstration</h1><p class="notice">Ce document est généré par une interface illustrative. Il ne prouve aucun paiement, virement ou compte bancaire réel.</p><div class="row"><span>Référence</span><strong>${escapeHTML(transaction.id.toUpperCase())}</strong></div><div class="row"><span>Opération</span><strong>${escapeHTML(transaction.description)}</strong></div><div class="row"><span>Compte de démonstration</span><strong>${escapeHTML(transaction.account)}</strong></div><div class="row"><span>Statut</span><strong>${escapeHTML(transaction.status)}</strong></div><div class="row"><span>Date</span><strong>${escapeHTML(formatDate(transaction.date, { day: "numeric", month: "long", year: "numeric" }))}</strong></div><p class="amount">${escapeHTML(formatSignedCurrency(transaction.amount))}</p><p class="footer">FGS Banque est une interface de simulation à vocation illustrative. Aucun service bancaire réel n'est fourni par cette plateforme.</p></main></body></html>`;
+  const content = `<!doctype html><html lang="fr"><head><meta charset="UTF-8"><title>Bordereau de virement FGS</title><style>body{margin:0;padding:48px;background:#eef7f1;color:#123529;font-family:Arial,sans-serif}.receipt{max-width:700px;margin:auto;padding:42px;border:2px solid #16835f;background:#fff}.watermark{margin-bottom:28px;color:#08764f;font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.brand{color:#08764f;font-size:28px;font-weight:800}.title{margin:26px 0 8px;font-size:26px}.notice{padding:15px;border-left:4px solid #16835f;background:#eff9f3;font-weight:700}.row{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid #d9e7de}.row span{color:#5c7266}.amount{font-size:28px;font-weight:700}.footer{margin-top:28px;color:#5c7266;font-size:12px}</style></head><body><main class="receipt"><div class="watermark">Document opérationnel</div><div class="brand">FGS BANQUE</div><h1 class="title">Bordereau de virement</h1><p class="notice">Conservez ce document pour votre suivi interne. La référence ci-dessous permet d'identifier rapidement l'opération.</p><div class="row"><span>Référence</span><strong>${escapeHTML(transaction.id.toUpperCase())}</strong></div><div class="row"><span>Opération</span><strong>${escapeHTML(transaction.description)}</strong></div><div class="row"><span>Compte débité</span><strong>${escapeHTML(transaction.account)}</strong></div><div class="row"><span>Statut</span><strong>${escapeHTML(transaction.status)}</strong></div><div class="row"><span>Date</span><strong>${escapeHTML(formatDate(transaction.date, { day: "numeric", month: "long", year: "numeric" }))}</strong></div><p class="amount">${escapeHTML(formatSignedCurrency(transaction.amount))}</p><p class="footer">FGS Banque · Bordereau généré depuis votre espace client.</p></main></body></html>`;
   const blob = new Blob([content], { type: "text/html;charset=utf-8" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = `bordereau-simulation-${transaction.id}.html`;
+  link.download = `bordereau-virement-${transaction.id}.html`;
   document.body.append(link);
   link.click();
   link.remove();
   URL.revokeObjectURL(link.href);
-  showToast("Bordereau téléchargé", "Le document porte la mention Simulation - sans valeur bancaire.", "success");
+  showToast("Bordereau téléchargé", "Le document de suivi a été généré.", "success");
 }
 
 function openCardInformation() {
@@ -1186,7 +1186,7 @@ function handleClick(event) {
   if (acknowledgeSecurityNotice) {
     state.securityDemoAcknowledged = true;
     renderApp();
-    showToast("Information confirmée", "Vous continuez dans un environnement de démonstration.", "info");
+    showToast("Information confirmée", "Vos paramètres de sécurité restent actifs.", "info");
     return;
   }
 
@@ -1389,7 +1389,7 @@ function handleSubmit(event) {
     }
     const beneficiaryName = String(formData.get("beneficiaryName") || "").trim();
     if (!beneficiaryName) {
-      showToast("Bénéficiaire requis", "Renseignez le nom du bénéficiaire de démonstration.", "error");
+      showToast("Bénéficiaire requis", "Renseignez le nom du bénéficiaire.", "error");
       return;
     }
     const requestDate = String(formData.get("date"));
