@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FGS Banque - interface bancaire de démonstration.">
-  <title>FGS Banque | Démonstration</title>
+  <meta name="description" content="FGS Banque - espace bancaire moderne.">
+  <title>FGS Banque | Espace client</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,6 @@
         <a href="#security">Securite</a>
         <a href="#contact">Contact</a>
       </nav>
-      <span class="demo-chip public-demo-chip"><i data-lucide="flask-conical"></i> Démonstration</span>
       <div class="public-actions">
         <button class="icon-button public-menu-button" type="button" data-public-menu-toggle aria-label="Ouvrir la navigation" title="Navigation">
           <i data-lucide="menu"></i>
@@ -69,7 +68,7 @@
           </div>
         </div>
         <div class="hero-stat-card">
-          <span class="stat-label">Solde de démonstration</span>
+          <span class="stat-label">Solde</span>
           <strong>42 500,80 EUR</strong>
           <span class="stat-trend"><i data-lucide="trending-up"></i> +8,4 % cette annee</span>
         </div>
@@ -117,11 +116,11 @@
         <div class="overview-window" aria-label="Apercu d'un tableau de bord financier">
           <div class="window-bar"><span></span><span></span><span></span><b>Vue generale</b></div>
           <div class="window-balance">
-            <span>Exemple de solde</span>
+            <span>Solde affiche</span>
             <strong>12 450,80 EUR</strong>
             <em>+ 520,40 EUR ce mois</em>
           </div>
-          <div class="window-chart"><span class="chart-grid-line line-one"></span><span class="chart-grid-line line-two"></span><span class="chart-grid-line line-three"></span><svg viewBox="0 0 520 185" aria-hidden="true"><path d="M0 147 C34 136 55 140 80 119 S121 92 158 110 S204 88 237 94 S281 65 318 76 S363 36 397 55 S442 20 520 31" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></div>
+          <div class="window-chart"><span class="chart-grid-line line-one"></span><span class="chart-grid-line line-two"></span><span class="chart-grid-line line-three"></span><svg viewBox="0 0 600 180" aria-hidden="true"><path d="M0,140 C80,120 120,145 180,110 C240,75 280,95 330,70 C390,40 430,52 480,36 C530,20 560,24 600,18" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <div class="window-mini-grid"><div><span>Depenses</span><b>2 210 EUR</b></div><div><span>Epargne</span><b>680 EUR</b></div></div>
         </div>
       </section>
@@ -174,7 +173,7 @@
     <footer class="public-footer" id="contact">
       <a class="brand brand-footer" href="#home" aria-label="FGS Banque, retour a l'accueil"><span class="brand-mark">FGS</span><span class="brand-name">BANQUE</span></a>
       <div class="footer-links"><a href="#services">Services</a><a href="#security">Securite</a><button type="button" data-login-open>Acces client</button></div>
-      <p>FGS Banque est une interface de simulation à vocation illustrative. Aucun service bancaire réel n'est fourni par cette plateforme.</p>
+      <p>FGS Banque est une interface bancaire moderne à vocation illustrative.</p>
     </footer>
   </section>
 
@@ -183,12 +182,11 @@
     <div class="login-panel" role="dialog" aria-modal="true">
       <button class="icon-button close-button" type="button" data-login-close aria-label="Fermer" title="Fermer"><i data-lucide="x"></i></button>
       <a class="brand brand-login" href="#home" data-login-close><span class="brand-mark">FGS</span><span class="brand-name">BANQUE</span></a>
-      <div class="login-heading"><p class="eyebrow">Espace de démonstration</p><h2 id="loginTitle">Ravi de vous revoir.</h2><p>Accédez à un exemple d'espace client fictif.</p></div>
-      <p class="login-demo-note"><i data-lucide="flask-conical"></i> Ne saisissez aucune donnée bancaire réelle. Les comptes, montants et actions de cette interface sont uniquement illustratifs.</p>
+      <div class="login-heading"><p class="eyebrow">Espace client</p><h2 id="loginTitle">Ravi de vous revoir.</h2><p>Accédez à votre espace client.</p></div>
       <form id="loginForm" class="login-form">
         <label>Identifiant<input name="identifier" type="text" autocomplete="username" placeholder="alex.martin" required></label>
         <label>Mot de passe<div class="input-with-action"><input name="password" type="password" autocomplete="current-password" placeholder="Votre mot de passe" required><button class="input-action" type="button" data-password-toggle aria-label="Afficher le mot de passe" title="Afficher le mot de passe"><i data-lucide="eye"></i></button></div></label>
-        <div class="login-options"><label class="checkbox-label"><input name="remember" type="checkbox"><span>Se souvenir de moi</span></label><button class="link-button" type="button" data-forgot-password>Mot de passe oublie ?</button></div>
+        <div class="login-options"><label class="checkbox-label"><input name="remember" type="checkbox"><span>Se souvenir de moi</span></label><button class="link-button" type="button" data-forgot-password>Mot de passe oublié ?</button></div>
         <button class="button button-primary button-full" type="submit">Se connecter <i data-lucide="arrow-right"></i></button>
       </form>
     </div>
@@ -199,11 +197,11 @@
       <div class="sidebar-top">
         <a class="brand" href="#" data-page="dashboard" aria-label="FGS Banque, tableau de bord"><span class="brand-mark">FGS</span><span class="brand-name">BANQUE</span></a>
         <nav class="app-nav">
-          <p class="nav-label">Démo FGS</p>
+          <p class="nav-label">Mon espace</p>
           <button type="button" class="app-nav-item" data-page="dashboard"><i data-lucide="layout-dashboard"></i><span>Vue generale</span></button>
           <button type="button" class="app-nav-item" data-page="accounts"><i data-lucide="wallet-cards"></i><span>Mes comptes</span></button>
           <button type="button" class="app-nav-item" data-page="transactions"><i data-lucide="receipt-text"></i><span>Transactions</span></button>
-          <button type="button" class="app-nav-item" data-page="transfers"><i data-lucide="flask-conical"></i><span>Simulations</span></button>
+          <button type="button" class="app-nav-item" data-page="transfers"><i data-lucide="arrow-left-right"></i><span>Virements</span></button>
           <p class="nav-label">Piloter</p>
           <button type="button" class="app-nav-item" data-page="cards"><i data-lucide="credit-card"></i><span>Mes cartes</span></button>
           <button type="button" class="app-nav-item" data-page="savings"><i data-lucide="piggy-bank"></i><span>Epargne</span></button>
@@ -214,23 +212,23 @@
       </div>
       <div class="sidebar-bottom">
         <button type="button" class="sidebar-user" data-page="profile"><span class="avatar avatar-large">AM</span><span><b>Alex Martin</b><small>Profil personnel</small></span><i data-lucide="chevron-right"></i></button>
-        <div class="sidebar-tools"><button class="icon-button" type="button" data-theme-toggle aria-label="Changer le theme" title="Changer le theme"><i data-lucide="moon"></i></button><button class="icon-button" type="button" data-page="settings" aria-label="Parametres" title="Parametres"><i data-lucide="settings-2"></i></button></div>
+        <div class="sidebar-tools"><button class="icon-button" type="button" data-theme-toggle aria-label="Changer le theme" title="Changer le theme"><i data-lucide="moon"></i></button><button class="icon-button" type="button" data-page="faq" aria-label="Aide"><i data-lucide="circle-help"></i></button></div>
       </div>
     </aside>
 
     <section class="app-main">
       <header class="app-topbar">
-        <div class="topbar-leading"><button class="icon-button mobile-menu-button" type="button" data-mobile-nav-toggle aria-label="Ouvrir le menu" title="Menu"><i data-lucide="menu"></i></button><div><p class="topbar-kicker" id="topbarKicker">Bienvenue dans votre espace</p><h1 id="pageTitle">Vue generale</h1></div><span class="app-demo-chip"><i data-lucide="flask-conical"></i> Mode démo</span></div>
+        <div class="topbar-leading"><button class="icon-button mobile-menu-button" type="button" data-mobile-nav-toggle aria-label="Ouvrir le menu" title="Menu"><i data-lucide="menu"></i></button><div><p class="topbar-kicker" id="topbarKicker">Bienvenue dans votre espace</p><h1 id="pageTitle">Vue generale</h1></div></div>
         <div class="topbar-actions"><button class="icon-button" type="button" data-theme-toggle aria-label="Changer le theme" title="Changer le theme"><i data-lucide="moon"></i></button><button class="notification-button" type="button" data-page="notifications" aria-label="Voir les notifications"><i data-lucide="bell"></i><span id="notificationBadge">3</span></button><button type="button" class="avatar avatar-button" data-page="profile" aria-label="Ouvrir mon profil">AM</button></div>
       </header>
       <main class="app-content" id="pageContent" tabindex="-1"></main>
-      <footer class="app-footer"><p>FGS Banque est une interface de simulation à vocation illustrative. Aucun service bancaire réel n'est fourni par cette plateforme.</p><button type="button" data-page="faq">Centre d'aide</button></footer>
+      <footer class="app-footer"><p>FGS Banque est une interface bancaire moderne à vocation illustrative.</p><button type="button" data-page="settings">Paramètres</button></footer>
     </section>
 
     <nav class="mobile-bottom-nav" aria-label="Navigation rapide">
       <button type="button" data-page="dashboard"><i data-lucide="house"></i><span>Accueil</span></button>
       <button type="button" data-page="accounts"><i data-lucide="wallet-cards"></i><span>Comptes</span></button>
-      <button type="button" class="mobile-transfer" data-page="transfers" aria-label="Créer une simulation de virement"><i data-lucide="flask-conical"></i></button>
+      <button type="button" class="mobile-transfer" data-page="transfers" aria-label="Faire un virement"><i data-lucide="arrow-left-right"></i></button>
       <button type="button" data-page="cards"><i data-lucide="credit-card"></i><span>Cartes</span></button>
       <button type="button" data-mobile-nav-toggle><i data-lucide="menu"></i><span>Menu</span></button>
     </nav>
@@ -240,7 +238,7 @@
       <div class="drawer-panel">
         <div class="drawer-header"><a class="brand" href="#" data-page="dashboard"><span class="brand-mark">FGS</span><span class="brand-name">BANQUE</span></a><button class="icon-button" type="button" data-mobile-nav-toggle aria-label="Fermer le menu" title="Fermer"><i data-lucide="x"></i></button></div>
         <nav class="drawer-nav" aria-label="Navigation mobile complete">
-          <button type="button" data-page="dashboard"><i data-lucide="layout-dashboard"></i> Vue generale</button><button type="button" data-page="accounts"><i data-lucide="wallet-cards"></i> Mes comptes</button><button type="button" data-page="transactions"><i data-lucide="receipt-text"></i> Transactions</button><button type="button" data-page="transfers"><i data-lucide="flask-conical"></i> Simulations</button><button type="button" data-page="cards"><i data-lucide="credit-card"></i> Mes cartes</button><button type="button" data-page="savings"><i data-lucide="piggy-bank"></i> Epargne</button><button type="button" data-page="budget"><i data-lucide="pie-chart"></i> Budget</button><button type="button" data-page="documents"><i data-lucide="folder-open"></i> Documents</button><button type="button" data-page="messages"><i data-lucide="messages-square"></i> Messages</button><button type="button" data-page="settings"><i data-lucide="settings-2"></i> Parametres</button>
+          <button type="button" data-page="dashboard"><i data-lucide="layout-dashboard"></i> Vue generale</button><button type="button" data-page="accounts"><i data-lucide="wallet-cards"></i> Mes comptes</button><button type="button" data-page="transactions"><i data-lucide="receipt-text"></i> Transactions</button><button type="button" data-page="transfers"><i data-lucide="arrow-left-right"></i> Virements</button><button type="button" data-page="cards"><i data-lucide="credit-card"></i> Mes cartes</button><button type="button" data-page="savings"><i data-lucide="piggy-bank"></i> Epargne</button><button type="button" data-page="budget"><i data-lucide="pie-chart"></i> Budget</button><button type="button" data-page="documents"><i data-lucide="folder-open"></i> Documents</button><button type="button" data-page="messages"><i data-lucide="messages-square"></i> Messages</button><button type="button" data-page="settings"><i data-lucide="settings-2"></i> Parametres</button>
         </nav>
       </div>
     </aside>
